@@ -1,0 +1,14 @@
+<div class="content" *ngIf="filetype">
+    <div class="image" *ngIf="filetype === 'image'">
+        <app-homeuser-resource-image
+                [blob]="resourceContent"></app-homeuser-resource-image>
+    </div>
+    <div class="text" *ngIf="filetype === 'txt' || filetype === 'html'">
+        <app-homeuser-resource-text
+                [blob]="resourceContent"></app-homeuser-resource-text>
+    </div>
+    <div class="pdf" *ngIf="filetype === 'pdf'">
+        <app-homeuser-resource-pdf
+                [blob]="resourceContent"></app-homeuser-resource-pdf>
+    </div>
+</div>

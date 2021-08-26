@@ -1,0 +1,34 @@
+<div class="container-title">
+    <div class="title-team">
+        <div class="team-name">
+            <span>Benvenuto team: {{teamName}}</span>
+        </div>
+        <div class="team-avatar">
+            <img [src]="imageToShow" *ngIf="imageToShow">
+        </div>
+    </div>
+</div>
+<div class="container-form-step">
+    <form (ngSubmit)="submitStep()" class="step-form">
+        <div class="form-container">
+            <label for="stepCode" class="form-title">Inserisci il codice per avviare il prossimo step</label>
+            <input type="text" id="stepCodeInput" name="stepCode" [(ngModel)]="stepCode" />
+            <button type="submit">Invia codice</button>
+        </div>
+    </form>
+</div>
+<div class="container-step enigma" *ngIf="submitedStepCode">
+    <h3>: Enigma da risolvere :</h3>
+    <app-homeuser-enigmafile
+                [stepCode]="submitedStepCode">
+        </app-homeuser-enigmafile>
+</div>
+
+<div class="container-step resource" *ngIf="submitedStepCode">
+    <h3>: Risorsa disponibile per questo enigma :</h3>
+    <div>
+        <app-homeuser-resourcefile
+                [stepCode]="submitedStepCode">
+        </app-homeuser-resourcefile>
+    </div>
+</div>

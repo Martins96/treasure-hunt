@@ -1,0 +1,21 @@
+<div *ngIf="!serverError && stepCodeResult">
+    <div *ngIf="stepInfoResponse && stepInfoResponse.enigmaTextFile">
+        <app-homeuser-enigma-text 
+                [textFile]="stepInfoResponse.enigmaTextFile"
+                [stepCode]="stepCode">
+        </app-homeuser-enigma-text>
+    </div>
+    <div *ngIf="stepInfoResponse && stepInfoResponse.enigmaImageFile">
+        <app-homeuser-enigma-image 
+                [imgFile]="stepInfoResponse.enigmaImageFile"
+                [stepCode]="stepCode">
+        </app-homeuser-enigma-image>
+    </div>
+</div>
+<div class="wrong-code" *ngIf="!stepCodeResult">
+    <p>Mi dispiace, il codice {{ stepCode }} non &egrave; corretto, riprova!</p>
+</div>
+<div *ngIf="serverError">
+    <h1>Server Error, Aia! sentite lo sviluppatore (scarso)</h1>
+    <p>{{ serverErrorMsg }}</p>
+</div>

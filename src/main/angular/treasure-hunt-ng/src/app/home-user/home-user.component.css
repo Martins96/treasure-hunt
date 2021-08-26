@@ -1,0 +1,56 @@
+.container-title {
+    font-family: Germina-Bunt;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 10%;
+
+    background-image: url("/assets/home-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.title-team {
+    background-color: rgba(200, 150, 120, 0.75);
+    border-radius: 25px;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 2%;
+}
+
+.team-name {
+    font-size: 1.6em;
+    padding: 5px 0;
+}
+
+.container-form-step {
+    font-family: Germina-Bunt;
+    font-size: 1.5em;
+    padding: 2%;
+
+    background-image: url("/assets/step-bg.png");
+    background-repeat: repeat-y;
+    background-size: cover;
+}
+
+.step-form {
+    display: block;
+}
+
+.step-form label {
+    display: block;
+    margin: 5px 0;
+    clear: both;
+}
+
+.enigma {
+    border: 2px solid black;
+    border-radius: 2px;
+    margin: 5px;
+}
+
+.enigma h3, .resource h3{
+    font-family: Germina-Bunt;
+    word-spacing: 2px;
+    letter-spacing: 3px;
+}
