@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class PassCodeCache {
 		Arrays.asList(stepsRoot.list()).forEach(folder -> {
 			final File passcodeFile = new File(stepsRoot.getAbsolutePath() + "/" + folder + "/passcode.txt");
 			try {
-				final String passcode = Files.readAllLines(passcodeFile.toPath()).get(0);
+				final String passcode = Files.readAllLines(passcodeFile.toPath(), Charset.defaultCharset()).get(0);
 				passCodeMap.put((stepsRoot.getAbsolutePath() + "/" + folder), passcode);
 			} catch (IOException e) {
 				log.error(e);

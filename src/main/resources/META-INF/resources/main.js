@@ -571,6 +571,8 @@ class HomeuserResourcefileComponent {
         let enigmaTextUrl = "/step/get-resource/" + changes.stepCode.currentValue;
         if (window.location.port === "4200")
             enigmaTextUrl = "http://localhost/step/get-resource/" + changes.stepCode.currentValue;
+        this.filetype = null;
+        this.resourceContent = null;
         this.rest.sendGetBlob(enigmaTextUrl, new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
             "Authorization": "Bearer " + this.cookieJWT,
             "content-type": "application/octet-stream"

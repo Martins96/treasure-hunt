@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.MalformedInputException;
 import java.nio.file.Files;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -46,6 +48,7 @@ public class StepEJB {
 			throws IOException {
 		final File requestedFile = new File(stepFolder.getAbsolutePath() + "/" + filename);
 		final String fileExtension = FileUtils.getFileExtension(requestedFile);
+		log.debug("Load enigma file in path " + requestedFile.getAbsolutePath());
 		switch (fileExtension.toLowerCase()) {
 		case "jpg":
 		case "jpeg":
@@ -65,10 +68,25 @@ public class StepEJB {
 	private String getTextFileContent(final File requestedFile)
 			throws IOException {
 		final StringBuffer sb = new StringBuffer();
-		for (String l : Files.readAllLines(requestedFile.toPath())) {
-			if (sb.length() != 0)
-				sb.append('\n');
-			sb.append(l);
+		log.debug("Default charset: " + Charset.defaultCharset());
+		try {
+			for (String l : Files.readAllLines(requestedFile.toPath(), Charset.defaultCharset())) {
+				if (sb.length() != 0)
+					sb.append('\n');
+				sb.append(l);
+			}
+		} catch (MalformedInputException e) {
+			Charset differentCharset = null;
+			if (Charset.defaultCharset().equals(Charset.forName("UTF-8"))) {
+				differentCharset = Charset.forName("windows-1252");
+			} else if (Charset.defaultCharset().equals(Charset.forName("windows-1252"))) {
+				differentCharset = Charset.forName("UTF-8");
+			}
+			for (String l : Files.readAllLines(requestedFile.toPath(), differentCharset)) {
+				if (sb.length() != 0)
+					sb.append('\n');
+				sb.append(l);
+			}
 		}
 		
 		return sb.toString();

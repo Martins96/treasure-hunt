@@ -27,6 +27,9 @@ export class HomeuserResourcefileComponent implements OnChanges {
     if (window.location.port === "4200")
     enigmaTextUrl = "http://localhost/step/get-resource/"+changes.stepCode.currentValue;
 
+    
+    this.filetype = null;
+    this.resourceContent = null;
     this.rest.sendGetBlob(enigmaTextUrl,
         new HttpHeaders({
           "Authorization": "Bearer " + this.cookieJWT,
