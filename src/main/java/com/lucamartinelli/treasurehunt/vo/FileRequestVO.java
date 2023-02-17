@@ -2,6 +2,9 @@ package com.lucamartinelli.treasurehunt.vo;
 
 import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class FileRequestVO implements Serializable {
 	
 	

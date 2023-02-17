@@ -78,8 +78,8 @@ public class StepEJB {
 		} catch (MalformedInputException e) {
 			Charset differentCharset = null;
 			if (Charset.defaultCharset().equals(Charset.forName("UTF-8"))) {
-				differentCharset = Charset.forName("windows-1252");
-			} else if (Charset.defaultCharset().equals(Charset.forName("windows-1252"))) {
+				differentCharset = Charset.forName("ISO-8859-1");
+			} else if (Charset.defaultCharset().equals(Charset.forName("ISO-8859-1"))) {
 				differentCharset = Charset.forName("UTF-8");
 			}
 			for (String l : Files.readAllLines(requestedFile.toPath(), differentCharset)) {

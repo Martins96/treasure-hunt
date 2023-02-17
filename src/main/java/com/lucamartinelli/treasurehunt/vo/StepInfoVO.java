@@ -2,7 +2,10 @@ package com.lucamartinelli.treasurehunt.vo;
 
 import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
+
+@RegisterForReflection
 public class StepInfoVO implements Serializable {
 	
 	
