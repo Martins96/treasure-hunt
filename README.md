@@ -189,9 +189,9 @@ The application can be packaged using:
 ./gradlew build
 ```
 
-It produces the `treasure-hunt-1.0.0-runner.jar` inside *build* folder.
+It produces the `treasure-hunt-1.0.1-runner.jar` inside *build* folder.
 
-The application is now runnable using `java -jar treasure-hunt-1.0.0-runner.jar`.
+The application is now runnable using `java -jar treasure-hunt-1.0.1-runner.jar`.
 
 
 ### Packaging native
@@ -202,7 +202,7 @@ The application can be packaged natively using:
 ./gradlew build -Dquarkus.package.type=native
 ```
 
-It produces the `treasure-hunt-1.0.0-runner.exe` inside *build* folder (in case of Windows as OS).
+It produces the `treasure-hunt-1.0.1-runner.exe` inside *build* folder (in case of Windows as OS).
 
 **Important**: In order to build the application in native mode you need to have installed 
 locally the GraalVM and the C++ environment compile.
