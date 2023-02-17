@@ -43,5 +43,24 @@ public class LoginRestServices {
 		
 	}
 	
+	@POST
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Path("/validate")
+    public Response validate(final String token) {
+		
+		try {
+			final boolean result = loginEJB.validate(token);
+			if (result)
+				return Response.ok(result).header("content-type", "text/plain").build();
+			else
+				return Response.status(403).entity(result).header("content-type", "text/plain").build();
+		} catch (Exception e) {
+			log.error("Error in login execution", e);
+			return Response.serverError().entity(e.getMessage()).header("content-type", "text/plain").build();
+		}
+		
+	}
+	
 	
 }

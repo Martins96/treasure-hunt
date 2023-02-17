@@ -32,7 +32,7 @@ public class TeamInfoRestService {
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/name")
 	public Response getName() {
-		if (jwt == null)
+		if (jwt == null || jwt.getClaimNames() == null)
 			return Response.status(403).entity("Not logged").build();
 		
 		return Response.ok(((String)jwt.getClaim("upn")).replace('_', ' ')).build();
@@ -43,7 +43,7 @@ public class TeamInfoRestService {
 	@Produces("image/jpg")
 	@Path("/avatar")
 	public Response getTeamAvatar() {
-		if (jwt == null)
+		if (jwt == null || jwt.getClaimNames() == null)
 			return Response.status(403).entity("Not logged").build();
 		
 		log.debug("Checking avatar for: " + jwt.getClaim("upn"));

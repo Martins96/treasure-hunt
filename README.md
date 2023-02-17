@@ -6,7 +6,7 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 
 ## How it works
 
-The treasure hunt program is fully configurable via files inside _/conf_ folder.
+The treasure hunt program is fully configurable via files inside */conf* folder.
 
 Select a physical field for the searcher, select the location where hide the step progression and config the application in order to provide to the team the puzzles and if you want some help tips.
 
@@ -147,6 +147,26 @@ The file name must be always resource and the extensions supported are:
 
 You can check the conf folder saved in github if you want an example.
 
+##### Certificate SSH
+In the project you can find the already generated certificates for create the JWT (signed and encrypted). You can use the existing ones or generate them by yourself.
+Here the list of command to use (OpenSSL is required)
+
+```shell
+openssl genrsa -out keypair.pem 2048
+```
+
+```shell
+openssl rsa -in keypair.pem -pubout -out public.signer.key.pem
+```
+
+```shell
+openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in keypair.pem -out private.signer.key.pem
+```
+
+The commands will generate 3 files, the application require 2 files (public.signer.key.pem and private.signer.key.pem). The private key must be in PKCS8 format as declared in the last command, PKCS8 is required in order to load it in JAVA.
+
+Use the same commands for generate also the keys for encryption (public.encrypt.key.pem and private.encrypt.key.pem)
+
 ___
 
 ## Quarkus specifications
@@ -164,10 +184,30 @@ You can run your application in dev mode that enables live coding using:
 ### Packaging and running the application
 
 The application can be packaged using:
+
 ```shell script
 ./gradlew build
 ```
-It produces the `treasure-hunt-1.0.0-runner.jar` inside _build_ folder.
+
+It produces the `treasure-hunt-1.0.0-runner.jar` inside *build* folder.
 
 The application is now runnable using `java -jar treasure-hunt-1.0.0-runner.jar`.
+
+
+### Packaging native
+
+The application can be packaged natively using:
+
+```shell script
+./gradlew build -Dquarkus.package.type=native
+```
+
+It produces the `treasure-hunt-1.0.0-runner.exe` inside *build* folder (in case of Windows as OS).
+
+**Important**: In order to build the application in native mode you need to have installed 
+locally the GraalVM and the C++ environment compile.
+
+Follow the guide: [Quarkus Native Image](https://quarkus.io/guides/building-native-image)
+
+For this application is required **graalvm-ce-java19-22.3.0**+
 
